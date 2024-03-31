@@ -1,0 +1,13 @@
+{
+  "bundles/dnaklikdnaexchange/app.css": "/build/app.css",
+  "bundles/dnaklikdnaexchange/app.js": "/build/app.js",
+  "bundles/dnaklikdnaexchange/theme.css": "/build/theme.css",
+  "bundles/dnaklikdnaexchange/fonts/fa-solid-900.ttf": "/build/fonts/fa-solid-900.45a265d0.ttf",
+  "bundles/dnaklikdnaexchange/fonts/fa-brands-400.ttf": "/build/fonts/fa-brands-400.6205fd00.ttf",
+  "bundles/dnaklikdnaexchange/fonts/fa-solid-900.woff2": "/build/fonts/fa-solid-900.fb8184ad.woff2",
+  "bundles/dnaklikdnaexchange/fonts/fa-brands-400.woff2": "/build/fonts/fa-brands-400.8d3cabfc.woff2",
+  "bundles/dnaklikdnaexchange/fonts/fa-regular-400.ttf": "/build/fonts/fa-regular-400.adc51aab.ttf",
+  "bundles/dnaklikdnaexchange/fonts/fa-regular-400.woff2": "/build/fonts/fa-regular-400.e931bc0d.woff2",
+  "bundles/dnaklikdnaexchange/fonts/fa-v4compatibility.ttf": "/build/fonts/fa-v4compatibility.2eb7b3ef.ttf",
+  "bundles/dnaklikdnaexchange/fonts/fa-v4compatibility.woff2": "/build/fonts/fa-v4compatibility.b3049b13.woff2"
+}

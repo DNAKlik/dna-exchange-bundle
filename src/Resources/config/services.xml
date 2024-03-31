@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="dnaklik_dna_exchange.dnaklik_exchange" class="DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange" public="true">
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_stamp_provider" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.exchange_dna_controller" class="DnaKlik\DnaExchangeBundle\Controller\ExchangeDnaController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface"/>
+            </call>
+            <tag name="container.service_subscriber"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_exchange"/>
+            <argument type="service" id="twig.loader" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.exchange_match_controller" class="DnaKlik\DnaExchangeBundle\Controller\ExchangeMatchController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface"/>
+            </call>
+            <tag name="container.service_subscriber"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_exchange"/>
+            <argument type="service" id="twig.loader" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_stamp_provider" class="DnaKlik\DnaExchangeBundle\Service\DnaKlikStampProvider">
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_stamp_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_user_stamp_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_match_dna"/>
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_crossover" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_content_repository" class="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository">
+            <tag name="dnaklik_exchange_content_repository" />
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_user_stamp_repository" class="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeUserStampRepository">
+            <tag name="dnaklik_exchange_user_stamp_repository" />
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_content_stamp_repository" class="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentStampRepository">
+            <tag name="dnaklik_exchange_content_stamp_repository" />
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_match_dna" class="DnaKlik\DnaExchangeBundle\Service\MatchDna">
+            <tag name="dnaklik_exchange_match_dna" />
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_stamp_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_user_stamp_repository"/>
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.dnaklik_crossover" class="DnaKlik\DnaExchangeBundle\Service\StampsCrossOver">
+            <tag name="dnaklik_exchange_crossover" />
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_user_stamp_repository"/>
+            <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_stamp_repository"/>
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="security.token_storage" />
+        </service>
+
+        <service id="dnaklik_dna_exchange.stamp_provider" alias="dnaklik_dna_exchange.dnaklik_stamp_provider" public="false"/>
+        <service id="DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange" alias="dnaklik_dna_exchange.dnaklik_exchange" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository" alias="dnaklik_dna_exchange.dnaklik_content_repository" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentStampRepository" alias="dnaklik_dna_exchange.dnaklik_content_stamp_repository" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeUserStampRepository" alias="dnaklik_dna_exchange.dnaklik_user_stamp_repository" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Entity\DnaExchangeContent" alias="dnaklik_dna_exchange.dnaklik_content_entity" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Service\MatchDna" alias="dnaklik_dna_exchange.dnaklik_match_dna" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Service\StampsCrossOver" alias="dnaklik_dna_exchange.dnaklik_crossover" public="false" />
+        <service id="DnaKlik\DnaExchangeBundle\Controller\ExchangeDnaController" alias="dnaklik_dna_exchange.exchange_dna_controller" public="true" />
+        <service id="DnaKlik\DnaExchangeBundle\Controller\ExchangeMatchController" alias="dnaklik_dna_exchange.exchange_match_controller" public="true" />
+    </services>
+</container>

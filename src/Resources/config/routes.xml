@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="dnaklik_dna_exchange_dna" controller="dnaklik_dna_exchange.exchange_dna_controller" path="exchange/{method}" >
+        <default key="method">index</default>
+        <!-- settings -->
+    </route>
+    <route id="dnaklik_dna_exchange_match" controller="dnaklik_dna_exchange.exchange_match_controller" path="exchange/admin/match" >
+        <!-- settings -->
+    </route>
+    <import resource="DnaKlik\DnaExchangeBundle\Controller\ExchangeDnaController" type="annotation"/>
+    <import resource="DnaKlik\DnaExchangeBundle\Controller\ExchangeMatchController" type="annotation"/>
+</routes>

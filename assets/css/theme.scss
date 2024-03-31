@@ -1,0 +1,41 @@
+$navbar-padding-x:                  1.5rem !default;
+
+@import "~bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~@fortawesome/fontawesome-free/css/v4-shims.css';
+
+#navbar-admin {
+  .active {
+    .nav-link {
+      color:#FFFFFF;
+    }
+  }
+}
+.btn-primary {
+  color:#FFFFFF;
+}
+.nav-actions {
+  -webkit-box-pack: end !important;
+  -ms-flex-pack: end !important;
+  justify-content: flex-end !important;
+}
+.action {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: left;
+  width:150px;
+  text-decoration: none;
+  .btn:focus {
+    box-shadow:none;
+  }
+  .fas {
+     margin-left: .5rem;
+   }
+}
+
+.match {
+  background-color: #999;
+  color: #fff;
+  padding-left: 1px;
+  padding-right: 1px;
+}
