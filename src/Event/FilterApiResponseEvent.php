@@ -1,8 +1,8 @@
 <?php
 
-namespace KnpU\LoremIpsumBundle\Event;
+namespace DnaKlik\DnaExchangeBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class FilterApiResponseEvent extends Event
 {

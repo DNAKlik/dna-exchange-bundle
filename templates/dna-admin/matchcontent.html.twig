@@ -1,0 +1,58 @@
+{% extends 'dna-admin/cms.html.twig' %}
+
+{% block meta %}
+    <title>CMS Dna Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DNAklik">
+    <meta name="copyright" content="DNAklik, Haarlem">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-4" style="background-color:{{ data.content.color }}">
+            <div class="content">
+            {{ data.content.id }} {{ data.content.urlName }} {{ data.content.color }}
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="alert alert-success"><p class="dna">DNA: {% for key, stamp in data.dna %}
+                    {{ stamp }}
+                    {% endfor %}</p></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Slug</th>
+                    <th>Score</th>
+                    <th>Score corr</th>
+                    <th>Stampcount</th>
+                    <th>DNA</th>
+                </tr>
+                </thead>
+                <tbody>
+            {% for key, item in data.items %}
+                <tr>
+                    <td>{{ key }}</td>
+                    {% if item.property is defined %}
+                        <td style="background-color:{{ item.property }}">{{ item.slug }}</td>
+                    {% else %}
+                        <td>{{ item.slug }}</td>
+                    {% endif %}
+
+                    <td>{{ item.match | number_format(3, ',') }}</td>
+                    <td>{{ item.matchCorr | number_format(3, ',')  }}</td>
+                    <td>{{ item.totalStampCount }}</td>
+                    <td>{{ item.dnaStamps | raw }}</td>
+                </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

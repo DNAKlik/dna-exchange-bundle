@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {% for stylesheet in options.stylesheets %}
+            <link rel="stylesheet" href="{{ asset(stylesheet) }}">
+        {% endfor %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% for javascript in options.javascripts %}
+            <script src="{{ asset(javascript) }}"></script>
+        {% endfor %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DNAklik Exchange</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-admin" aria-controls="navbar-admin" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% set route = app.request.attributes.get('_route_params') %}
+        <div class="collapse navbar-collapse row" id="navbar-admin">
+            <div class="col-auto mr-auto">
+                <ul class="nav navbar-nav col-auto mr-auto">
+                    {% if route.method is defined %}
+                        {% if route.method == "index" %}
+                            <li class="nav-item active"><a class="nav-link" href="{{ path('dna_home') }}">Content</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('dna_home') }}">Content</a></li>
+                        {% endif %}
+                        {% if route.method == "profiles" %}
+                            <li class="nav-item active"><a class="nav-link" href="{{ path('dna_profiles') }}">User profiles</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('dna_profiles') }}">User profiles</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ path('dna_home') }}">Content</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('dna_profiles') }}">User profiles</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

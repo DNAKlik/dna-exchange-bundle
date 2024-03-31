@@ -1,61 +1,60 @@
 <?php
 
-namespace KnpU\LoremIpsumBundle\Tests;
+namespace DnaKlik\DnaExchangeBundle\Tests;
 
-use KnpU\LoremIpsumBundle\KnpUIpsum;
-use KnpU\LoremIpsumBundle\KnpULoremIpsumBundle;
-use KnpU\LoremIpsumBundle\WordProviderInterface;
+use DnaKlik\DnaExchangeBundle\DnaKlikDnaExchangeBundle;
+use DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange;
+use DnaKlik\DnaExchangeBundle\Service\StampProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 class FunctionalTest extends TestCase
 {
     public function testServiceWiring()
     {
-        $kernel = new KnpULoremIpsumTestingKernel();
+        $kernel = new DnaKlikDnaExchangeTestingKernel();
         $kernel->boot();
         $container = $kernel->getContainer();
 
-        $ipsum = $container->get('knpu_lorem_ipsum.knpu_ipsum');
-        $this->assertInstanceOf(KnpUIpsum::class, $ipsum);
-        $this->assertInternalType('string', $ipsum->getParagraphs());
+        $exchange = $container->get('dnaklik_dna_exchange.dnaklik_exchange');
+        $this->assertInstanceOf(DnaKlikExchange::class, $exchange);
+        $this->assertIsString($exchange->getParagraphs());
     }
 }
 
-class KnpULoremIpsumTestingKernel extends Kernel
+class DnaKlikDnaExchangeTestingKernel extends Kernel
 {
     public function __construct()
     {
         parent::__construct('test', true);
     }
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [
-            new KnpULoremIpsumBundle(),
+            new DnaKlikDnaExchangeBundle(),
         ];
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(function(ContainerBuilder $container) {
-            $container->register('stub_word_list', StubWordList::class)
-                ->addTag('knpu_ipsum_word_provider');
+            $container->register('stub_stamp_list', StubStampList::class)
+                ->addTag('dnaklik_exchange_stamp_provider');
         });
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return __DIR__.'/cache/'.spl_object_hash($this);
     }
 }
 
-class StubWordList implements WordProviderInterface
+class StubStampList implements StampProviderInterface
 {
-    public function getWordList(): array
+    public function getStampList(): array
     {
         return ['stub', 'stub2'];
     }

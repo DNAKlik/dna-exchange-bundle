@@ -1,21 +1,60 @@
 <?php
 
-namespace KnpU\LoremIpsumBundle\DependencyInjection;
+namespace DnaKlik\DnaExchangeBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): ?TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('knpu_lorem_ipsum');
+        $treeBuilder = new TreeBuilder('dnaklik_dna_exchange');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
-                ->booleanNode('unicorns_are_real')->defaultTrue()->info('Whether or not you believe in unicorns')->end()
-                ->integerNode('min_sunshine')->defaultValue(3)->info('How much do you like sunshine?')->end()
+                ->integerNode('crossOver')->defaultValue(8)->info('Number off stamps to exchange')->end()
+                ->integerNode('maxStamps')->defaultValue(64)->info('Max stamps per item')->end()
+                ->scalarNode('stamp_provider')->defaultNull()->end()
+                ->arrayNode('assets')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('stylesheets')
+                            ->defaultValue([
+                                'bundles/dnaklikdnaexchange/build/app.css'
+                            ])
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('extra_stylesheets')
+                            ->info('stylesheets to add to the page')
+                            ->defaultValue([])
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('remove_stylesheets')
+                            ->info('stylesheets to remove from the page')
+                            ->defaultValue([])
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('javascripts')
+                            ->defaultValue([
+                                'bundles/dnaklikdnaexchange/build/app.js'
+                            ])
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('extra_javascripts')
+                            ->info('javascripts to add to the page')
+                            ->defaultValue([])
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('remove_javascripts')
+                            ->info('javascripts to remove from the page')
+                            ->defaultValue([])
+                            ->prototype('scalar')->end()
+                        ->end()
+
+                    ->end()
+                ->end()
             ->end()
         ;
 

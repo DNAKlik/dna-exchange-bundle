@@ -1,9 +1,9 @@
 > WARNING: This bundle is an example bundle created in https://symfonycasts.com/screencast/symfony-bundle
 > and is not meant to be used as a dependency in a real application! 
 
-# Hello LoremIpsumBundle!
+# Hello DnaExchangeBundle!
 
-LoremIpsumBundle is a way for you to generate "fake text" into
+DnaExchangeBundle is a way for you to generate "fake text" into
 your Symfony application, but with *just* a little bit more joy
 than your normal lorem ipsum.
 
@@ -14,25 +14,25 @@ composer require knpuniversity/lorem-ipsum-bundle --dev
 ```
 
 And... that's it! If you're *not* using Symfony Flex, you'll also
-need to enable the `KnpU\LoremIpsumBundle\KnpULoremIpsumBundle`
+need to enable the `KnpU\DnaExchangeBundle\KnpUDnaExchangeBundle`
 in your `AppKernel.php` file.
 
 ## Usage
 
 This bundle provides a single service for generating fake text, which
-you can autowire by using the `KnpUIpsum` type-hint:
+you can autowire by using the `KnpUExchange` type-hint:
 
 ```php
 // src/Controller/SomeController.php
 
-use KnpU\LoremIpsumBundle\KnpUIpsum;
+use KnpU\DnaExchangeBundle\Service\KnpUExchange;
 // ...
 
 class SomeController
 {
-    public function index(KnpUIpsum $knpUIpsum)
+    public function index(KnpUExchange $knpUExchange)
     {
-        $fakeText = $knpUIpsum->getParagraphs();
+        $fakeText = $knpUExchange->getParagraphs();
 
         // ...
     }
@@ -69,7 +69,7 @@ To do that, create a class that implements `WordProviderInterface`:
 ```php
 namespace App\Service;
 
-use KnpU\LoremIpsumBundle\WordProviderInterface;
+use KnpU\DnaExchangeBundle\Service\WordProviderInterface;
 
 class CustomWordProvider implements WordProviderInterface
 {

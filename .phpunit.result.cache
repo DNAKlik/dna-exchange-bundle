@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DnaKlik\\DnaExchangeBundle\\Tests\\Controller\\ExchangeApiControllerTest::testIndex":4,"DnaKlik\\DnaExchangeBundle\\Tests\\FunctionalTest::testServiceWiring":4},"times":{"DnaKlik\\DnaExchangeBundle\\Tests\\Controller\\ExchangeApiControllerTest::testIndex":0.788,"DnaKlik\\DnaExchangeBundle\\Tests\\FunctionalTest::testServiceWiring":0.018}}

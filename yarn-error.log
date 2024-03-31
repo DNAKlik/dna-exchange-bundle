@@ -1,0 +1,51 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.18/libexec/bin/yarn.js encore dev
+
+PATH: 
+  /Users/walter/.symfony/bin:/usr/local/bin:/usr/local/bin/git/bin:/usr/local/bin:/usr/local/sbin:/Applications/MAMP/bin/php/php8.2.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/walter/Documents/web/dna-exchange-bundle/package.json: Unexpected token } in JSON at position 282
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.18/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.18/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.18/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "devDependencies": {
+      "@fortawesome/fontawesome-free": "^6.5.1",
+      "@popperjs/core": "^2.11.8",
+      "@symfony/webpack-encore": "^4.5.0",
+      "bootstrap": "^5.3.2",
+      "core-js": "^3.23.0",
+      "jquery": "^3.7.1",
+      "node-sass": "^9.0.0",
+      "sass-loader": "^13.0.0",
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+      "dev-server": "encore dev-server",
+      "dev": "encore dev",
+      "watch": "encore dev --watch",
+      "build": "encore production --progress"
+    },
+    "dependencies": {}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
