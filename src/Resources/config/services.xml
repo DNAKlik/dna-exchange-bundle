@@ -16,6 +16,7 @@
             <tag name="container.service_subscriber"/>
             <argument type="service" id="dnaklik_dna_exchange.dnaklik_exchange"/>
             <argument type="service" id="twig.loader" />
+            <argument type="service" id="doctrine" />
         </service>
 
         <service id="dnaklik_dna_exchange.exchange_match_controller" class="DnaKlik\DnaExchangeBundle\Controller\ExchangeMatchController" public="true">

@@ -1,0 +1,19 @@
+{% extends 'dna-admin/cms.html.twig' %}
+
+{% block meta %}
+    <title>CMS Dna Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DNAklik">
+    <meta name="copyright" content="DNAklik, Haarlem">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-3">
+        <a href="{{ path('dna_install_db') }}" class="action">Install db<i class="fas fa-arrow-right"></i></a>
+        {% for contentItem in content %}
+            <p>{{ contentItem }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

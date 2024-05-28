@@ -1,16 +1,12 @@
-> WARNING: This bundle is an example bundle created in https://symfonycasts.com/screencast/symfony-bundle
-> and is not meant to be used as a dependency in a real application! 
-
 # Hello DnaExchangeBundle!
 
-DnaExchangeBundle is a way for you to generate "fake text" into
-your Symfony application, but with *just* a little bit more joy
-than your normal lorem ipsum.
+DnaExchangeBundle is a way to provide dna stamps to content and users.
+With this dna the bundle can provide related content or related users.
 
 Install the package with:
 
 ```console
-composer require knpuniversity/lorem-ipsum-bundle --dev
+composer require dnaklik/dna-exchange-bundle --dev
 ```
 
 And... that's it! If you're *not* using Symfony Flex, you'll also
@@ -19,71 +15,126 @@ in your `AppKernel.php` file.
 
 ## Usage
 
-This bundle provides a single service for generating fake text, which
-you can autowire by using the `KnpUExchange` type-hint:
+To provide content ans users with dna stamps add this code in your controller. If there is no user logged in the DNA stamps are stored in a session.
 
 ```php
 // src/Controller/SomeController.php
 
-use KnpU\DnaExchangeBundle\Service\KnpUExchange;
+use DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange;
+use Symfony\Component\HttpFoundation\Request;
 // ...
 
 class SomeController
 {
+    
+    public function __construct(Request $request, DnaKlikExchange $dnaKlikExchange)
+    {
+        $this->dnaKlikExchange = $dnaKlikExchange;
+    }
+    
     public function index(KnpUExchange $knpUExchange)
     {
-        $fakeText = $knpUExchange->getParagraphs();
+        $stamp = $this->dnaKlikExchange->getStamp($request);
 
         // ...
     }
 }
+
+## To find related content:
+    public function relatedContent(Request $request): response
+    {
+        $items = $this->dnaKlikExchange->getRelatedContent($request, 30);
+    }
+
+## An array with slugs is returned. You can use the slugs to retrieve the related content from your own application
 ```
 
 You can also access this service directly using the id
-`knpu_lorem_ipsum.knpu_ipsum`.
+`dnaklik_dna_exchange.dnaklik_exchange`.
 
 ## Configuration
 
-A few parts of the generated text can be configured directly by
-creating a new `config/packages/knpu_lorem_ipsum.yaml` file. The
+Some optional parameters can be configured directly by
+creating a new `config/packages/dnaklik_dna_exchange.yaml` file. The
 default values are:
 
 ```yaml
-# config/packages/knpu_lorem_ipsum.yaml
-knpu_lorem_ipsum:
+# config/packages/dnaklik_dna_exchange.yaml
+# crossover value
+crossOver:    8
 
-    # Whether or not you believe in unicorns
-    unicorns_are_real:    true
+# max number off stamps per item
+maxStamps: 64
 
-    # How much do you like sunshine?
-    min_sunshine:         3
+stamp_provider: App\Service\CustomDnaKlikStampProvider
 ```
 
 ## Extending the Word List
 
-If you're feeling *especially* creative and excited, you can add 
-your *own* words to the word generator!
+If you're feeling *especially* creative and excited, you can customize
+dna_exchange to provide it with extra content!
 
-To do that, create a class that implements `WordProviderInterface`:
+To do that, create a class that implements `DnaKlikStampProvider`:
+Example of your own stampprovider with content from colors
 
 ```php
 namespace App\Service;
 
-use KnpU\DnaExchangeBundle\Service\WordProviderInterface;
+use DnaKlik\DnaExchangeBundle\Service\DnaKlikStampProvider;
 
-class CustomWordProvider implements WordProviderInterface
+class CustomDnaKlikStampProvider extends DnaKlikStampProvider
 {
-    public function getWordList(): array
+    public function getContent(): array
     {
-        return ['beach'];
+        $result = $this->dnaExchangeContentStampRepository->StampsInContent();
+        foreach($result as $index => $content) {
+            $slugParts = explode("/", $content["slug"]);
+            $color = $this->manager
+                ->getRepository(Color::class)
+                ->findOneBy(array("urlName" => $slugParts[2]));
+            $result[$index]["property"] = $color->getColor();
+        }
+        return $result;
+    }
+
+    function getContentFromId($id) {
+        $result = $this->dnaExchangeContentRepository->findBy(array("id" => $id),array('id'=>'DESC'),3,0);
+        foreach($result as $index => $content) {
+            $slugParts = explode("/", $content->getSlug());
+            $color = $this->manager
+                ->getRepository(Color::class)
+                ->findOneBy(array("urlName" => $slugParts[2]));
+        }
+        return $color;
+    }
+
+    public function findMatchItems($dna, $max)
+    {
+        $items = $this->matchDna->findMatchItems($dna, $max);
+        foreach($items as $index => $item) {
+            $slugParts = explode("/", $item["slug"]);
+            $color = $this->manager
+                ->getRepository(Color::class)
+                ->findOneBy(array("urlName" => $slugParts[2]));
+            $items[$index]["property"] = $color->getColor();
+        }
+        // dump($items);
+        return $items;
     }
 }
 ```
 
-And... that's it! If you're using the standard service configuration,
-your new class will automatically be registered as a service and used
-by the system. If you are not, you will need to register this class
-as a service and tag it with `knpu_ipsum_word_provider`.
+There is also an admin to evaluate the progress of the dna exchange:
+The route to this admin can be configured by
+creating a new `config/routes/dnaklik_dna_exchange.yaml` file. 
+
+```yaml
+_dna_exchange:
+  resource: '@DnaKlikDnaExchangeBundle/Resources/config/routes.xml'
+  prefix: /dna
+```
+
+The url to this admin is: <your_url>/dna/exchange/admin
 
 ## Contributing
 

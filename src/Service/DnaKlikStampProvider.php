@@ -43,9 +43,13 @@ class DnaKlikStampProvider implements StampProviderInterface
         return $result;
     }
 
-    function getContentFromId($id) {
+    public function getContentFromId($id) {
         $result = $this->dnaExchangeContentRepository->findBy(array("id" => $id),array('id'=>'DESC'),3,0);
         return $result;
+    }
+
+    public function getUserContent($user_id, $profile_id) {
+        return false;
     }
 
     public function getProfiles(): array

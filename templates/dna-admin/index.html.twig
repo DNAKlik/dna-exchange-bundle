@@ -10,33 +10,35 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Slug</th>
-                <th>Stamp</th>
-                <th>Count</th>
-                <th>Stamps</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for key, item in content %}
-            <tr id='row_{{ item.id }}' class='rows'>
-                <td>{{ item.id }}</td>
-                <td style="background-color:{{ item.property }}">{{ item.slug }}</td>
-                <td>{{ item.stamp }}</td>
-                <td>{{ item.stampCount }}</td>
-                <td>{% for stamp, counter in item.dnaArr %}
-                        {{ stamp }} ({{ counter }})
-                    {% endfor %}</td>
-                <td>
-                    <a href="{{ path('match_content_content', {'id': item.id}) }}" class="action">CC<i class="fas fa-arrow-right"></i></a>
-                    <a href="{{ path('match_content_user', {'id': item.id}) }}" class="action">CU<i class="fas fa-arrow-right"></i></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Slug</th>
+                    <th>Stamp</th>
+                    <th>Count</th>
+                    <th>Stamps</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for key, item in content %}
+                <tr id='row_{{ item.id }}' class='rows'>
+                    <td>{{ item.id }}</td>
+                    <td style="background-color:{{ item.property }}">{{ item.slug }}</td>
+                    <td>{{ item.stamp }}</td>
+                    <td>{{ item.stampCount }}</td>
+                    <td>{% for stamp, counter in item.dnaArr %}
+                            {{ stamp }} ({{ counter }})
+                        {% endfor %}</td>
+                    <td>
+                        <a href="{{ path('match_content_content', {'id': item.id}) }}" class="action">CC<i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ path('match_content_user', {'id': item.id}) }}" class="action">CU<i class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

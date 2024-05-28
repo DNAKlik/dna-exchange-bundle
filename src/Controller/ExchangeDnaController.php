@@ -8,6 +8,7 @@ use DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Config\FileLocatorInterface;
 use Twig\Loader\FilesystemLoader;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,14 +20,13 @@ class ExchangeDnaController extends AbstractController
 
     private $eventDispatcher;
 
-    private $filesystemLoader;
+    private $doctrine;
 
-    private $templateLocator;
-
-    public function __construct(DnaKlikExchange $dnaKlikExchange, FilesystemLoader $filesystemLoader, EventDispatcherInterface $eventDispatcher = null)
+    public function __construct(DnaKlikExchange $dnaKlikExchange, FilesystemLoader $filesystemLoader, ManagerRegistry $doctrine, EventDispatcherInterface $eventDispatcher = null)
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
+        $this->doctrine = $doctrine;
         $filesystemLoader->addPath('../dna-exchange-bundle/templates/', $namespace = '__main__');
     }
 
@@ -34,8 +34,6 @@ class ExchangeDnaController extends AbstractController
     public function __invoke(Request $request)
     {
         $uriParts = explode("/", $request->getRequestUri());
-        dump($request);
-        dump($uriParts);
         if (isset($uriParts[3])) {
             if ($uriParts[3] == "profiles") {
                 return $this->getProfiles();
@@ -70,6 +68,48 @@ class ExchangeDnaController extends AbstractController
         //dump($data);
 
         return $this->render('dna-admin/profiles.html.twig', [
+            'content' => $data["content"],
+            'options' => $data["options"]
+        ]);
+    }
+
+    #[Route('/install', name: 'dna_install')]
+    public function install()
+    {
+        $data = [
+            'options' => $this->dnaKlikExchange->getOptions()
+        ];
+
+        return $this->render('dna-admin/install.html.twig', [
+            'options' => $data["options"]
+        ]);
+    }
+
+    #[Route('/install_db', name: 'dna_install_db')]
+    public function installDb()
+    {
+        $schemaManager = $this->doctrine->getConnection()->getSchemaManager();
+        // dump($schemaManager);
+        $nameSpace = 'DnaKlik\DnaExchangeBundle\Entity';
+        $tables = array('dna_exchange_content' => 'DnaExchangeContent', 'dna_exchange_content_stamp' => 'DnaExchangeContentStamp', 'dna_exchange_user_stamp' => 'DnaExchangeUserStamp');
+        foreach($tables as $table => $entityName) {
+            if ($schemaManager->tablesExist(array($table)) == true) {
+                $content[] =  "table ".$table." exists";
+            } else {
+                $manager = $this->doctrine->getManager();
+                $metadata = $manager->getClassMetadata($nameSpace.'\\'.$entityName);
+                $metadata->setPrimaryTable(array('name' => $table));
+                $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($manager);
+                $schemaTool->createSchema(array($metadata));
+                $content[] =  "table ".$table." created";
+            }
+        }
+        $data = [
+            'content' => $content,
+            'options' => $this->dnaKlikExchange->getOptions()
+        ];
+
+        return $this->render('dna-admin/install.html.twig', [
             'content' => $data["content"],
             'options' => $data["options"]
         ]);

@@ -1,4 +1,18 @@
 /vendor/
 composer.lock
 /phpunit.xml
+.phpunit.result.cache
 /tests/cache
+/node_modules/
+yarn-error.log
+
+###< mac files  ###
+.idea
+/.idea/
+*.idea*
+*.DS_Store
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###

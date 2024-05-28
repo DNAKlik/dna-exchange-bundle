@@ -105,6 +105,8 @@ class ExchangeMatchController extends AbstractController
         $user_id = $request->get("user_id");
         $profile_id = $request->get("profile_id");
         $dna = $this->dnaKlikExchange->getUserStampsFromUserProfile($user_id, $profile_id);
+        $userProfileContent = $this->dnaKlikExchange->getUserContent($user_id, $profile_id);
+        dump($userProfileContent);
         $items = $this->dnaKlikExchange->getMatchedContentForDna($dna, $this->pageLimit);
         foreach($items as $ind => $item) {
             $dnaStamps = "";
@@ -124,8 +126,9 @@ class ExchangeMatchController extends AbstractController
             'items' => $items
         ];
 
-        return $this->render('dna-admin/matchcontent.html.twig', [
+        return $this->render('dna-admin/matchusercontent.html.twig', [
             'data' => $data,
+            'profile' => $userProfileContent,
             'options' => $this->dnaKlikExchange->getOptions()
         ]);
     }

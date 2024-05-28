@@ -32,7 +32,7 @@ class DnaKlikExchange
 
     //private $dnaExchangeContentRepository;
 
-    public function __construct(DnaKlikStampProvider $stampProvider, $crossOver = 8, $maxStamps = 64, array $options = array())
+    public function __construct(StampProviderInterface $stampProvider, $crossOver = 8, $maxStamps = 64, array $options = array())
     {
         //dump($stampProvider);
         $this->stampProvider = $stampProvider;
@@ -98,7 +98,6 @@ class DnaKlikExchange
         if (is_null($userStamps)) {
             $userStamps = array();
         }
-        $itemDna = array();
 
         $stampCollection = $this->stampProvider->getStampsAfterCrossover($criteria, $userStamps);
 
@@ -189,6 +188,11 @@ class DnaKlikExchange
     public function getUserStampsFromUserProfile($user_id, $profile_id) {
         $this->itemStamps = $this->stampProvider->getUserProfileStamps($user_id, $profile_id);
         return $this->itemStamps;
+    }
+
+    public function getUserContent($user_id, $profile_id) {
+        $userContent = $this->stampProvider->getUserContent($user_id, $profile_id);
+        return $userContent;
     }
 
     public function getUserStampsFromContent($id) {
