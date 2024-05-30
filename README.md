@@ -6,11 +6,11 @@ With this dna the bundle can provide related content or related users.
 Install the package with:
 
 ```console
-composer require dnaklik/dna-exchange-bundle --dev
+composer require dnaklik/dna-exchange-bundle
 ```
 
 And... that's it! If you're *not* using Symfony Flex, you'll also
-need to enable the `KnpU\DnaExchangeBundle\KnpUDnaExchangeBundle`
+need to enable the `DnaKlik\DnaExchangeBundle\DnaKlikDnaExchangeBundle`
 in your `AppKernel.php` file.
 
 ## Usage
@@ -27,12 +27,13 @@ use Symfony\Component\HttpFoundation\Request;
 class SomeController
 {
     
-    public function __construct(Request $request, DnaKlikExchange $dnaKlikExchange)
+    public function __construct(Request $request, DnaKlikExchange $dnaKlikExchange, DnaExchangeContentRepository $dnaExchangeContentRepository)
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
+        $this->dnaExchangeContentRepository = $dnaExchangeContentRepository;
     }
     
-    public function index(KnpUExchange $knpUExchange)
+    public function detail()
     {
         $stamp = $this->dnaKlikExchange->getStamp($request);
 
@@ -44,6 +45,22 @@ class SomeController
     public function relatedContent(Request $request): response
     {
         $items = $this->dnaKlikExchange->getRelatedContent($request, 30);
+        foreach($items as $values) {
+            $values["slug"];
+            $content = $this->doctrine
+                ->getRepository(Content::class)
+                ->findOneBy(array("urlName" => $slugParts[2]));
+            $values["matchCorr"];
+            foreach($values["stamps"] as $stamp => $stampCount) {
+                if (isset($values["matchStamps"][$stamp])) {
+                    $dna .= "<span class='match'>".$stamp." (".$stampCount.")</span> ";
+                }
+                else {
+                    $dna .= $stamp." (".$stampCount.") ";
+                }
+            }
+            $values["totalStampCount"]);
+        }
     }
 
 ## An array with slugs is returned. You can use the slugs to retrieve the related content from your own application
@@ -69,7 +86,7 @@ maxStamps: 64
 stamp_provider: App\Service\CustomDnaKlikStampProvider
 ```
 
-## Extending the Word List
+## Extending the Stamp List
 
 If you're feeling *especially* creative and excited, you can customize
 dna_exchange to provide it with extra content!

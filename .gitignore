@@ -1,4 +1,13 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/uploads/
+/var/
 /vendor/
+###< symfony/framework-bundle ###
 composer.lock
 /phpunit.xml
 .phpunit.result.cache
