@@ -19,8 +19,6 @@ class ExchangeMatchController extends AbstractController
 
     private $eventDispatcher;
 
-    private $filesystemLoader;
-
     private $templateLocator;
 
     private $pageLimit = 20;
@@ -29,6 +27,7 @@ class ExchangeMatchController extends AbstractController
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
+        dump($filesystemLoader);
         $filesystemLoader->addPath('../dna-exchange-bundle/templates/', $namespace = '__main__');
     }
 
