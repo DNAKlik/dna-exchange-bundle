@@ -28,9 +28,6 @@ class DnaKlikDnaExchangeExtension extends Extension
         $config['options']['stylesheets'] = $stylesheet;
 
         $definition = $container->getDefinition('dnaklik_dna_exchange.dnaklik_exchange');
-        if (null !== $config['stamp_provider']) {
-            $container->setAlias('dnaklik_dna_exchange.dnaklik_stamp_provider', $config['stamp_provider']);
-        }
         $definition->setArgument(1, $config['crossOver']);
         $definition->setArgument(2, $config['maxStamps']);
         $definition->setArgument(3, $config['options']);

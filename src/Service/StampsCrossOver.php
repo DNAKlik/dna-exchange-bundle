@@ -141,8 +141,8 @@ class StampsCrossOver
             $parent_user_dna = $this->getParentArr($userStamps);
             $parent_item_dna = $this->getParentArr($itemStamps);
 
-            dump($parent_item_dna);
-            dump($parent_user_dna);
+            //dump($parent_item_dna);
+            //dump($parent_user_dna);
 
             $child_item_dna = $this->createChildArr($parent_user_dna, $parent_item_dna);
             $child_user_dna = $this->createChildArr($parent_item_dna, $parent_user_dna);
@@ -150,7 +150,7 @@ class StampsCrossOver
             if ($itemCounter <= ($this->maxStamps - $this->crossOver)) {
                 // array content_stamp is nog niet vol, dus child stamps item worden toegevoegd
                 // er moeten nieuwe stamps toegevoegd worden aan item, we kunnen kiezen uit extra stamps van user, 4 extra moeder stamps of 4 random stamps al bestaande stamps dupliceren
-                dump($child_item_dna); // 8 stamps
+                //dump($child_item_dna); // 8 stamps
                 $child_item_dna_parts = array_chunk($child_item_dna, round($this->crossOver/2), true);
                 //$child_dna = array_merge($child_item_array_chunks[0], $child_user_array_chunks[0]);
                 // add 4 stamps to item

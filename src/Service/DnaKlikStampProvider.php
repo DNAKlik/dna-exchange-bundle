@@ -12,8 +12,6 @@ use DnaKlik\DnaExchangeBundle\Service\StampsCrossOver;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-use Doctrine\ORM\EntityManagerInterface;
-
 class DnaKlikStampProvider implements StampProviderInterface
 {
     public $dnaExchangeContentRepository;

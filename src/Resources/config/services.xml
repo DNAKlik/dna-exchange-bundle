@@ -38,7 +38,7 @@
             <argument type="service" id="dnaklik_dna_exchange.dnaklik_crossover" />
         </service>
 
-        <service id="dnaklik_dna_exchange.dnaklik_content_repository" class="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository">
+        <service id="dnaklik_dna_exchange.dnaklik_content_repository" class="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository" public="true">
             <tag name="dnaklik_exchange_content_repository" />
             <argument type="service" id="doctrine" />
         </service>

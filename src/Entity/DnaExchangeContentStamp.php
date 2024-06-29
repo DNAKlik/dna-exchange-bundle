@@ -13,7 +13,7 @@ class DnaExchangeContentStamp
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity:DnaExchangeContent::class, inversedBy:"DnaExchangeContentStamp")]
     #[ORM\JoinColumn(nullable: false)]
     private ?DnaExchangeContent $dnaExchangeContent = null;
 

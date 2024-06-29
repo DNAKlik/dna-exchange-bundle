@@ -32,10 +32,10 @@ class DnaKlikExchange
 
     //private $dnaExchangeContentRepository;
 
-    public function __construct(StampProviderInterface $stampProvider, $crossOver = 8, $maxStamps = 64, array $options = array())
+    public function __construct(array $stampProvider, $crossOver = 8, $maxStamps = 64, array $options = array())
     {
         //dump($stampProvider);
-        $this->stampProvider = $stampProvider;
+        $this->stampProvider = $stampProvider[0];
         $this->crossOver = $crossOver;
         $this->maxStamps = $maxStamps;
         $this->stampProvider->stampsCrossOver->setCrossOver($crossOver);
@@ -135,7 +135,6 @@ class DnaKlikExchange
         $session->get('dna');
         $slug = $request->getRequestUri();
         $criteria = array("slug" => $slug);
-        dump($slug);
 
         $itemStamps = $this->stampProvider->getItemStamps($criteria);
         $userStamps = $this->stampProvider->getUserStamps();

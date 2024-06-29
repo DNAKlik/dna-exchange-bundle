@@ -12,7 +12,7 @@ class DnaKlikDnaExchangeBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
-        // $container->addCompilerPass(new StampProviderCompilerPass());
+        $container->addCompilerPass(new StampProviderCompilerPass());
     }
 
     public function getContainerExtension(): ?DnaKlikDnaExchangeExtension

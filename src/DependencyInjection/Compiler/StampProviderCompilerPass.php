@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class StampProviderCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $definition = $container->getDefinition('dnaklik_dna_exchange.dnaklik_exchange');
         $references = array();
