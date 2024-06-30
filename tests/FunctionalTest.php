@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use DnaKlik\DnaExchangeBundle\Entity\DnaExchangeContent;
 
 class FunctionalTest extends TestCase
 {
@@ -16,7 +19,22 @@ class FunctionalTest extends TestCase
         $kernel->boot();
         $container = $kernel->getContainer();
 
-        // dump($container);
+        /*
+        $dnaExchangeContent = new DnaExchangeContent();
+        $dnaExchangeContent->setSlug('Test');
+        $dnaExchangeContent->setStamp('0000');
+
+        $dnaExchangeContentRepository = $this->createMock(EntityRepository::class);
+
+        $dnaExchangeContentRepository->expects($this->any())
+            ->method('find')
+            ->willReturn($dnaExchangeContent);
+        $entityManager = $this->createMock(EntityManager::class);
+        $entityManager->expects($this->any())
+            ->method('getRepository')
+            ->willReturn($dnaExchangeContentRepository);
+        */
+
         $ipsum = $container->get('dnaklik_dna_exchange.dnaklik_content_repository');
         //$this->assertInstanceOf(DnaKlikExchange::class, $ipsum);
         //$this->assertInternalType('string', $ipsum->getOptions());

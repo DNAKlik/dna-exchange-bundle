@@ -13,6 +13,14 @@ class MatchDna
 
     private $userStamps = array();
 
+    private $dnaExchangeContentRepository;
+
+    private $dnaExchangeContentStampRepository;
+
+    private $dnaExchangeUserStampRepository;
+
+    private $registry;
+
     public function __construct(DnaExchangeContentRepository $dnaExchangeContentRepository, DnaExchangeContentStampRepository $dnaExchangeContentStampRepository ,DnaExchangeUserStampRepository $dnaExchangeUserStampRepository, ManagerRegistry $registry)
     {
         $this->dnaExchangeContentRepository = $dnaExchangeContentRepository;

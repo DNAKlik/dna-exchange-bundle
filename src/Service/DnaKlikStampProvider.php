@@ -20,6 +20,14 @@ class DnaKlikStampProvider implements StampProviderInterface
 
     private $dnaExchangeUserStampRepository;
 
+    public $stampsCrossOver;
+
+    public $matchDna;
+
+    public $manager;
+
+    public $user;
+
     public function __construct( DnaExchangeContentRepository $dnaExchangeContentRepository, DnaExchangeContentStampRepository $dnaExchangeContentStampRepository, DnaExchangeUserStampRepository $dnaExchangeUserStampRepository, MatchDna $matchDna, ManagerRegistry $manager, TokenStorageInterface $tokenStorageInterface, StampsCrossOver $stampsCrossOver) {
         $this->dnaExchangeContentRepository = $dnaExchangeContentRepository;
         $this->dnaExchangeUserStampRepository = $dnaExchangeUserStampRepository;

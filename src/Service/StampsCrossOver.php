@@ -17,12 +17,17 @@ class StampsCrossOver
 
     private $user = false;
 
+    private $dnaExchangeContentStampRepository;
+
+    private $dnaExchangeUserStampRepository;
+
+    private $entityManager;
+
     public function __construct( DnaExchangeUserStampRepository $dnaExchangeUserStampRepository, DnaExchangeContentStampRepository $dnaExchangeContentStampRepository, ManagerRegistry $manager, UsageTrackingTokenStorage $usageTrackingTokenStorage) {
 
         $this->dnaExchangeUserStampRepository = $dnaExchangeUserStampRepository;
         $this->dnaExchangeContentStampRepository = $dnaExchangeContentStampRepository;
-        $this->manager = $manager;
-        $this->entityManager = $this->manager->getManager();
+        $this->entityManager = $manager->getManager();
         if (is_null($usageTrackingTokenStorage->getToken())) {
             $this->user = false;
         }
@@ -89,7 +94,7 @@ class StampsCrossOver
                     $parent_user_array[0][$i] = $itemParentStamp;
                 }
             }
-            dump($parent_user_array[0]);
+            // dump($parent_user_array[0]);
             $itemCounter = count($itemStamps);
             $itemStamps = $this->addStampsToItem($dnaStampContent, $parent_user_array[0], $itemCounter, $itemStamps);
             // stop 4 moeder stamps van item in user als user nog niet vol is
