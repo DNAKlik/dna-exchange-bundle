@@ -2,14 +2,11 @@
 
 namespace DnaKlik\DnaExchangeBundle\Controller;
 
-use DnaKlik\DnaExchangeBundle\Event\FilterApiResponseEvent;
-use DnaKlik\DnaExchangeBundle\Event\DnaKlikDnaExchangeEvents;
 use DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Config\FileLocatorInterface;
 use Twig\Loader\FilesystemLoader;
 use Symfony\Component\Routing\Annotation\Route;
 

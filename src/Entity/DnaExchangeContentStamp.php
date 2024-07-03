@@ -2,7 +2,7 @@
 
 namespace DnaKlik\DnaExchangeBundle\Entity;
 
-use App\Repository\DnaExchangeContentStampRepository;
+use DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentStampRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DnaExchangeContentStampRepository::class)]

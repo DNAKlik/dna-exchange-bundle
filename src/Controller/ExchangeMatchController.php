@@ -2,13 +2,10 @@
 
 namespace DnaKlik\DnaExchangeBundle\Controller;
 
-use DnaKlik\DnaExchangeBundle\Event\FilterApiResponseEvent;
-use DnaKlik\DnaExchangeBundle\Event\DnaKlikDnaExchangeEvents;
 use DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Config\FileLocatorInterface;
 use Twig\Loader\FilesystemLoader;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,7 +24,7 @@ class ExchangeMatchController extends AbstractController
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
-        dump($filesystemLoader);
+        //dump($filesystemLoader);
         $filesystemLoader->addPath('../dna-exchange-bundle/templates/', $namespace = '__main__');
     }
 

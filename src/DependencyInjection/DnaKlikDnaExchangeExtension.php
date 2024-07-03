@@ -60,8 +60,6 @@ class DnaKlikDnaExchangeExtension extends Extension
      * @param array<string, mixed> $config
      *
      * @return string[]
-     *
-     * @phpstan-param SonataAdminConfiguration $config
      */
     private function buildJavascripts(array $config): array
     {

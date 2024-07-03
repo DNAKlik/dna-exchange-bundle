@@ -5,10 +5,6 @@ use DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository;
 use DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentStampRepository;
 use DnaKlik\DnaExchangeBundle\Repository\DnaExchangeUserStampRepository;
 use DnaKlik\DnaExchangeBundle\Entity\DnaExchangeContent;
-use DnaKlik\DnaExchangeBundle\Entity\DnaExchangeContentStamp;
-use DnaKlik\DnaExchangeBundle\Entity\DnaExchangeUserStamp;
-use DnaKlik\DnaExchangeBundle\Service\MatchDna;
-use DnaKlik\DnaExchangeBundle\Service\StampsCrossOver;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 

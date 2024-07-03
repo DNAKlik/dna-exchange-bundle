@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use DnaKlik\DnaExchangeBundle\Entity\DnaExchangeContent;
+use DnaKlik\DnaExchangeBundle\DependencyInjection\Compiler\StampProviderCompilerPass;
 
 class FunctionalTest extends TestCase
 {
@@ -35,7 +36,7 @@ class FunctionalTest extends TestCase
             ->willReturn($dnaExchangeContentRepository);
         */
 
-        $ipsum = $container->get('dnaklik_dna_exchange.dnaklik_content_repository');
+        $ipsum = $container->get('dnaklik_dna_exchange.dnaklik_stamp_provider');
         //$this->assertInstanceOf(DnaKlikExchange::class, $ipsum);
         //$this->assertInternalType('string', $ipsum->getOptions());
     }

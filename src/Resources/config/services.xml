@@ -28,7 +28,7 @@
             <argument type="service" id="twig.loader" />
         </service>
 
-        <service id="dnaklik_dna_exchange.dnaklik_stamp_provider" class="DnaKlik\DnaExchangeBundle\Service\DnaKlikStampProvider">
+        <service id="dnaklik_dna_exchange.dnaklik_stamp_provider" class="DnaKlik\DnaExchangeBundle\Service\DnaKlikStampProvider" public="true">
             <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_repository"/>
             <argument type="service" id="dnaklik_dna_exchange.dnaklik_content_stamp_repository"/>
             <argument type="service" id="dnaklik_dna_exchange.dnaklik_user_stamp_repository"/>
@@ -68,6 +68,8 @@
             <argument type="service" id="doctrine" />
             <argument type="service" id="security.token_storage" />
         </service>
+
+        <service id="twig.loader" class="Twig\Loader\FilesystemLoader" />
 
         <service id="dnaklik_dna_exchange.stamp_provider" alias="dnaklik_dna_exchange.dnaklik_stamp_provider" public="false"/>
         <service id="DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange" alias="dnaklik_dna_exchange.dnaklik_exchange" public="false" />

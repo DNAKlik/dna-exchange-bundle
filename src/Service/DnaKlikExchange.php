@@ -32,7 +32,7 @@ class DnaKlikExchange
 
     //private $dnaExchangeContentRepository;
 
-    public function __construct(array $stampProvider, $crossOver = 8, $maxStamps = 64, array $options = array())
+    public function __construct(array $stampProvider = array(), $crossOver = 8, $maxStamps = 64, array $options = array())
     {
         //dump($stampProvider);
         $this->stampProvider = $stampProvider[0];
