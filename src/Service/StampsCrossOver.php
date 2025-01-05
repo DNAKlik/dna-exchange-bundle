@@ -53,9 +53,12 @@ class StampsCrossOver
                 $parent_item_dna[$i] = $itemParentStamp;
             }
             $itemStamps = $this->addStampsToItem($dnaStampContent, $parent_item_dna, 0, $itemStamps);
-            $this->entityManager->flush();
+            // $this->entityManager->flush();
             // stop 4 moeder stamps van item in user
             $userStamps = $this->addStampsToUser($parent_item_dna, 0, $userStamps);
+            // $unitOfWork = $this->entityManager->getUnitOfWork();
+            // $unitOfWork->commit($itemStamps);
+            // $unitOfWork->commit($userStamps);
             $this->entityManager->flush();
             //dump($dnaStampContent);
         }
@@ -77,6 +80,9 @@ class StampsCrossOver
                 $itemCounter = count($itemStamps);
                 $itemStamps = $this->addStampsToItem($dnaStampContent, $parent_item_dna, $itemCounter, $itemStamps);
             }
+            // $unitOfWork = $this->entityManager->getUnitOfWork();
+            // $unitOfWork->commit($itemStamps);
+            // $unitOfWork->commit($userStamps);
             $this->entityManager->flush();
         }
         elseif (count($itemStamps ) < 1 ) {
@@ -136,6 +142,10 @@ class StampsCrossOver
                     $counter++;
                 }
             }
+            // $unitOfWork = $this->entityManager->getUnitOfWork();
+            // $unitOfWork->commit($itemStamps);
+            // $unitOfWork->commit($dnaExchangeUserStamp);
+            // $unitOfWork->commit($dnaExchangeUserStamp);
             $this->entityManager->flush();
             //dump($userStamps);
             //dump($dnaStampContent);
@@ -246,6 +256,11 @@ class StampsCrossOver
             else {
                 $userStamps = $this->updateStampsInUser($parent_user_dna, $child_user_dna, $userStamps);
             }
+            // $unitOfWork = $this->entityManager->getUnitOfWork();
+            // $unitOfWork->commit($itemStamps);
+            // $unitOfWork->commit($userStamps);
+            // $unitOfWork->commit($dnaExchangeUserStamp);
+            // $unitOfWork->commit(($dnaExchangeUserStamp);
             $this->entityManager->flush();
 
         }

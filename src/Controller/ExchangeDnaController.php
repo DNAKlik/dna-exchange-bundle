@@ -24,7 +24,10 @@ class ExchangeDnaController extends AbstractController
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
         $this->doctrine = $doctrine;
-        $filesystemLoader->addPath('../dna-exchange-bundle/templates/', $namespace = '__main__');
+        //dump($filesystemLoader);
+        $ext_path = $filesystemLoader->getPaths("DnaKlikDnaExchange"); //
+        //dump($ext_path);
+        $filesystemLoader->addPath($ext_path[0].'/templates/', $namespace = '__main__');
     }
 
     #[Route('', name: 'index')]

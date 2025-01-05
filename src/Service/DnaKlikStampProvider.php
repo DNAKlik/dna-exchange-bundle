@@ -71,6 +71,7 @@ class DnaKlikStampProvider implements StampProviderInterface
                 $itemStamps[] = $dnaExchangeContentStamp->getStamp();
             }
         }
+        dump($itemStamps);
 
         return $itemStamps;
     }
@@ -124,7 +125,9 @@ class DnaKlikStampProvider implements StampProviderInterface
                 $dnaExchangeContent->setSlug($criteria["slug"]);
                 $entityManager =$this->manager->getManager();
                 $entityManager->persist($dnaExchangeContent);
-                $entityManager->flush();
+                $unitOfWork = $entityManager->getUnitOfWork();
+                $unitOfWork->commit($dnaExchangeContent);
+                //$entityManager->flush();
             }
             else {
                 foreach($results as $stampContent) {
@@ -133,9 +136,11 @@ class DnaKlikStampProvider implements StampProviderInterface
                     $dnaExchangeContent = new DnaExchangeContent();
                     $dnaExchangeContent->setStamp($new_stamp);
                     $dnaExchangeContent->setSlug($criteria["slug"]);
-                    $entityManager =$this->manager->getManager();
+                    $entityManager = $this->manager->getManager();
                     $entityManager->persist($dnaExchangeContent);
-                    $entityManager->flush();
+                    $unitOfWork = $entityManager->getUnitOfWork();
+                    $unitOfWork->commit($dnaExchangeContent);
+                    // $entityManager->flush();
                 }
             }
         }

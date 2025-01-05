@@ -58,7 +58,7 @@ class DnaKlikExchangeTestingKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(function(ContainerBuilder $container) {
-            $container->register('twig.loader', \Twig\Loader\FilesystemLoader::class);
+            $container->register('twig.loader', \Twig\Loader\LoaderInterface::class);
             $container->register('security.token_storage', \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface::Class);
             $container->register('doctrine', \Doctrine\Persistence\ManagerRegistry::class);
         });
