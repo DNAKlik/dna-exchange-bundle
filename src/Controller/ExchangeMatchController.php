@@ -24,8 +24,8 @@ class ExchangeMatchController extends AbstractController
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
-        //dump($filesystemLoader);
-        $ext_path = $filesystemLoader->getPaths("DnaKlikDnaExchange"); //
+        dump($filesystemLoader);
+        $ext_path = $filesystemLoader->getPaths("DnaKlikDnaExchange");
         $filesystemLoader->addPath($ext_path[0].'/templates/', $namespace = '__main__');
     }
 
@@ -103,7 +103,7 @@ class ExchangeMatchController extends AbstractController
         $profile_id = $request->get("profile_id");
         $dna = $this->dnaKlikExchange->getUserStampsFromUserProfile($user_id, $profile_id);
         $userProfileContent = $this->dnaKlikExchange->getUserContent($user_id, $profile_id);
-        dump($userProfileContent);
+        // dump($userProfileContent);
         $items = $this->dnaKlikExchange->getMatchedContentForDna($dna, $this->pageLimit);
         foreach($items as $ind => $item) {
             $dnaStamps = "";

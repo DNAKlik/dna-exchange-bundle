@@ -69,8 +69,6 @@
             <argument type="service" id="security.token_storage" />
         </service>
 
-        <service id="twig.loader" class="Twig\Loader\FilesystemLoader" />
-
         <service id="dnaklik_dna_exchange.stamp_provider" alias="dnaklik_dna_exchange.dnaklik_stamp_provider" public="false"/>
         <service id="DnaKlik\DnaExchangeBundle\Service\DnaKlikExchange" alias="dnaklik_dna_exchange.dnaklik_exchange" public="false" />
         <service id="DnaKlik\DnaExchangeBundle\Repository\DnaExchangeContentRepository" alias="dnaklik_dna_exchange.dnaklik_content_repository" public="false" />

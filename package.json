@@ -1,21 +1,25 @@
 {
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
-    "@popperjs/core": "^2.11.8",
-    "@symfony/webpack-encore": "^4.5.0",
-    "bootstrap": "^5.3.2",
-    "core-js": "^3.23.0",
-    "jquery": "^3.7.1",
-    "node-sass": "^9.0.0",
-    "sass-loader": "^13.0.0"
+  "name": "@dnaklik/dna_exchange",
+  "version": "1.0.0",
+  "symfony": {
+    "controllers": {
+      "slug": {
+        "main": "dist/controller.js",
+        "fetch": "eager",
+        "enabled": true,
+        "autoimport": {
+          "@dnaklik/feature/dist/bootstrap4-theme.css": false,
+          "@dnaklik/feature/dist/bootstrap5-theme.css": true
+        }
+      }
+    },
+    "importmap": {
+      "@hotwired/stimulus": "^3.0.0",
+      "slugify": "^1.6.5"
+    }
   },
-  "license": "UNLICENSED",
-  "private": true,
-  "scripts": {
-    "dev-server": "encore dev-server",
-    "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production --progress"
-  },
-  "dependencies": {}
+  "peerDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "slugify": "^1.6.5"
+  }
 }

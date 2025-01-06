@@ -71,7 +71,7 @@ class DnaKlikStampProvider implements StampProviderInterface
                 $itemStamps[] = $dnaExchangeContentStamp->getStamp();
             }
         }
-        dump($itemStamps);
+        // dump($itemStamps);
 
         return $itemStamps;
     }

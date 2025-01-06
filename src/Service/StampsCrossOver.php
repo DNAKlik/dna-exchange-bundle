@@ -133,7 +133,7 @@ class StampsCrossOver
                     if ($this->user) {
                         $dnaExchangeUserStamp = $this->dnaExchangeUserStampRepository->findOneBy(array("user" => $this->user, "profile" => $this->user->getSelectedProfile(), "Counter" => $parentIndexArr[$counter] + 1));
                         if (is_null($dnaExchangeUserStamp)) {
-                            dump($parentIndexArr[$counter]);
+                            // dump($parentIndexArr[$counter]);
                         }
                         $dnaExchangeUserStamp->setStamp($itemParentStamp);
                         $this->entityManager->persist($dnaExchangeUserStamp);
@@ -234,8 +234,8 @@ class StampsCrossOver
                         else {
                             $dnaExchangeUserStamp = $this->dnaExchangeUserStampRepository->findOneBy(array("user" => $this->user, "profile" => $this->user->getSelectedProfile(), "Counter" => $parentIndexArr[$counter]+1));
                             if (is_null($dnaExchangeUserStamp)) {
-                                dump($parentIndexArr[$counter]);
-                                dump($this->user);
+                                // dump($parentIndexArr[$counter]);
+                                // dump($this->user);
                             }
                             $dnaExchangeUserStamp->setStamp($stamp);
                             $this->entityManager->persist($dnaExchangeUserStamp);
@@ -273,8 +273,8 @@ class StampsCrossOver
                 foreach ($stamps as $stamp) {
                     $counter = $stamp->getCounter();
                     if (in_array($counter, $counterArr)) {
-                        dump("counter already excist: " . $counter);
-                        dump("userstamps: " . count($userStamps) . " itemstamps: " . count($itemStamps));
+                        // dump("counter already excist: " . $counter);
+                        // dump("userstamps: " . count($userStamps) . " itemstamps: " . count($itemStamps));
                         $error = true;
                     }
                     $counterArr[] = $counter;

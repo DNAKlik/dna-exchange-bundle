@@ -12,8 +12,18 @@
  * The "importmap:require" command can be used to add new entries to this file.
  */
 return [
-    'app' => [
-        'path' => './assets/app.js',
-        'entrypoint' => true,
+    '@fortawesome/fontawesome-free/css/all.css' => [
+        'version' => '6.6.0',
+        'type' => 'css',
+    ],
+    '@fortawesome/free-solid-svg-icons' => [
+        'version' => '6.7.2',
+    ],
+    '@fortawesome/fontawesome-free' => [
+        'version' => '6.7.2',
+    ],
+    '@fortawesome/fontawesome-free/css/fontawesome.min.css' => [
+        'version' => '6.7.2',
+        'type' => 'css',
     ],
 ];

@@ -1,6 +1,4 @@
-// any CSS you require will output into a single css file (app.css in this case)
-require('./css/app.scss');
+import './bootstrap.js';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/free-solid-svg-icons';
 
-
-// Provide Bootstrap variable globally to allow custom backend pages to use it
-window.bootstrap = bootstrap;
