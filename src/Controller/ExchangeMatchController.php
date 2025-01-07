@@ -24,7 +24,7 @@ class ExchangeMatchController extends AbstractController
     {
         $this->dnaKlikExchange = $dnaKlikExchange;
         $this->eventDispatcher = $eventDispatcher;
-        dump($filesystemLoader);
+        // dump($filesystemLoader);
         $ext_path = $filesystemLoader->getPaths("DnaKlikDnaExchange");
         $filesystemLoader->addPath($ext_path[0].'/templates/', $namespace = '__main__');
     }

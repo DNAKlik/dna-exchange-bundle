@@ -26,7 +26,7 @@ class ExchangeDnaController extends AbstractController
         $this->doctrine = $doctrine;
         //dump($filesystemLoader);
         $ext_path = $filesystemLoader->getPaths("DnaKlikDnaExchange"); //
-        dump($ext_path);
+        //dump($ext_path);
         if (count($ext_path) < 1) {
             dump ("no ext path");
         }
