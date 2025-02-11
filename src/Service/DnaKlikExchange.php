@@ -156,6 +156,17 @@ class DnaKlikExchange
         return $items;
     }
 
+    public function getRelatedContentFromContent($slug, $maxContent) {
+        $criteria = array("slug" => $slug);
+
+        $itemStamps = $this->stampProvider->getItemStamps($criteria);
+        $this->setItemStamps($itemStamps);
+
+        $items = $this->stampProvider->findMatchItems($itemStamps, $maxContent);
+        //$users = $stampProvider->findMatchUsers($dna);
+        return $items;
+    }
+
     public function getMatchedContentForDna($dna, $maxContent) {
         $items = $this->stampProvider->findMatchItems($dna, $maxContent);
         return $items;
@@ -181,6 +192,11 @@ class DnaKlikExchange
 
     public function getContentFromId($contentId) {
         $content = $this->stampProvider->getContentFromId($contentId);
+        return $content;
+    }
+
+    public function getContentFromSlug($slug) {
+        $content = $this->stampProvider->getContentFromSlug($slug);
         return $content;
     }
 
